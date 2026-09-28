@@ -1,0 +1,6 @@
+{
+  "name": "MediBook",
+  "description": "Modern doctor appointment booking platform connecting patients with top verified doctors and hospitals across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
