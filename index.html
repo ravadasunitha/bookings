@@ -12,10 +12,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Official @n8n/chat CDN stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
     <div id="root"></div>
+    <div id="n8n-chat"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      const getSessionId = () => {
+        try {
+          let sid = localStorage.getItem('n8n-chat-session-id');
+          if (!sid) {
+            sid = 'mdb_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+            localStorage.setItem('n8n-chat-session-id', sid);
+          }
+          return sid;
+        } catch (e) {
+          return 'mdb_' + Date.now();
+        }
+      };
+
+      createChat({
+        webhookUrl: 'https://ravadasunitha.app.n8n.cloud/webhook/76707270-228d-4edf-a5b7-86fca98b30de/chat',
+        target: '#n8n-chat',
+        mode: 'window',
+        loadPreviousSession: false,
+        showWelcomeScreen: false,
+        sessionId: getSessionId(),
+        defaultLanguage: 'en',
+        initialMessages: [
+          'Hello! 👋 Welcome to MediBook.',
+          'I am your healthcare assistant. How can I help you find a doctor or book an appointment today?'
+        ],
+        i18n: {
+          en: {
+            title: 'MediBook Assistant',
+            subtitle: 'Doctor bookings & hospital assistance',
+            footer: '',
+            getStarted: 'New Conversation',
+            inputPlaceholder: 'Type your message...',
+            closeButtonTooltip: 'Close chat',
+          },
+        },
+      });
+    </script>
   </body>
 </html>
 

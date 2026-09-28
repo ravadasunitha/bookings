@@ -20,7 +20,7 @@ export const Toast: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 animate-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed bottom-5 left-5 sm:left-auto sm:right-24 z-50 animate-in slide-in-from-bottom-5 duration-300">
       <div
         className={`flex items-center gap-3 px-4 py-3 rounded-xl border shadow-lg max-w-md ${
           bgStyles[toast.type]
